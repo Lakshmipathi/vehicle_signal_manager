@@ -829,7 +829,7 @@ def show(signal, value, indicator):
     print(_format_signal_msg(signal, value, indicator))
 
 
-class StdioIPC(ipc.IPC):
+class DebugIPC(ipc.IPC):
 
     def fileno(self):
         return sys.stdin.fileno()
@@ -1011,7 +1011,7 @@ if __name__ == "__main__":
             logger = Logger(pipeout_fd)
 
         if not args.ipc_modules:
-            ipc_obj = StdioIPC()
+            ipc_obj = DebugIPC()
         elif len(args.ipc_modules) == 1:
             ipc_obj = ipc.load(args.ipc_modules[0])
         else:
